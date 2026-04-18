@@ -1,43 +1,72 @@
-
-<!-- this file just a atlas demo, change whatever you want and make yourself feel at home :) -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Atlas</title>
+  <title>sphynx</title>
   <script src="/atlas.register.js"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
-      background: #111;
+      background: radial-gradient(circle at top, #1a1a1a, #0a0a0a 70%);
       color: #ccc;
-      font-family: monospace;
+      font-family: 'JetBrains Mono', monospace;
       height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(120,120,255,0.15), transparent 70%);
+      filter: blur(100px);
+      animation: float 10s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translate(-50px, -50px); }
+      50% { transform: translate(50px, 50px); }
+      100% { transform: translate(-50px, -50px); }
     }
 
     .wrap {
-      width: 420px;
-      padding: 0 1rem;
+      width: 440px;
+      padding: 2rem;
+      border: 1px solid #222;
+      border-radius: 12px;
+      background: rgba(20, 20, 20, 0.6);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 40px rgba(0,0,0,0.6);
+      position: relative;
+      z-index: 1;
     }
 
     h1 {
-      font-size: 1.1rem;
-      font-weight: normal;
+      font-size: 1.3rem;
+      font-weight: 600;
       color: #fff;
-      margin-bottom: 1.25rem;
-      letter-spacing: 0.02em;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.05em;
     }
 
     h1 span {
-      color: #555;
-      font-size: 0.85rem;
+      color: #666;
+      font-size: 0.8rem;
       margin-left: 0.4rem;
+      font-weight: 300;
     }
 
     form {
@@ -47,83 +76,127 @@
 
     input {
       flex: 1;
-      background: #1a1a1a;
+      background: #111;
       border: 1px solid #2a2a2a;
-      color: #ddd;
-      font-family: monospace;
-      font-size: 0.875rem;
-      padding: 0.5rem 0.75rem;
+      color: #eee;
+      font-size: 0.9rem;
+      padding: 0.65rem 0.8rem;
+      border-radius: 6px;
       outline: none;
+      transition: all 0.2s ease;
     }
 
-    input:focus { border-color: #444; }
-    input::placeholder { color: #444; }
+    input:focus {
+      border-color: #6c6cff;
+      box-shadow: 0 0 10px rgba(108,108,255,0.3);
+    }
+
+    input::placeholder {
+      color: #555;
+    }
 
     button {
-      background: #222;
-      border: 1px solid #2a2a2a;
+      background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+      border: 1px solid #333;
       color: #aaa;
-      font-family: monospace;
-      font-size: 0.875rem;
-      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      padding: 0.65rem 1.2rem;
+      border-radius: 6px;
       cursor: pointer;
+      transition: 0.2s ease;
     }
 
-    button:hover { background: #2a2a2a; color: #fff; }
+    button:hover {
+      background: #6c6cff;
+      color: #fff;
+      border-color: #6c6cff;
+      box-shadow: 0 0 12px rgba(108,108,255,0.5);
+    }
 
     .links {
-      margin-top: 1rem;
+      margin-top: 1.2rem;
       display: flex;
-      gap: 1rem;
+      justify-content: space-between;
       font-size: 0.75rem;
+      opacity: 0.7;
     }
 
     .links a {
-      color: #444;
+      color: #555;
       text-decoration: none;
+      transition: 0.2s ease;
     }
 
-    .links a:hover { color: #888; }
+    .links a:hover {
+      color: #aaa;
+    }
   </style>
 </head>
+
 <body>
   <div class="wrap">
-    <h1>atlas <span>by bromine network</span></h1>
+    <h1>sphynx <span>by euphoria games</span></h1>
+
     <form id="f">
-      <input id="u" type="text" placeholder="search or enter a url." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <input id="u" type="text" placeholder="search or enter a url..." autocomplete="off">
+      <button>go</button>
     </form>
+
     <div class="links">
-      <a href="https://github.com/brominenetwork/Atlas" target="_blank">github</a>
-      <a href="https://discord.gg/unblockings" target="_blank">discord</a>
-      <a href="https://t.me/@qatual" target="_blank">telegram</a>
+      <a href="https://kingston.gay" target="_blank">kingston</a>
+      <a href="https://discord.gg/JuguBrMENB" target="_blank">discord</a>
+      <a href="https://king.lgbt/donate" target="_blank">donate</a>
     </div>
   </div>
+
   <script>
-    !function(){
-      function enc(u){
-        try{return btoa(encodeURIComponent(u)).replace(/\+/g,"-").replace(/\//g,"_").replace(/=/g,"")}
-        catch(e){return null}
+    function enc(u) {
+      try {
+        return btoa(encodeURIComponent(u))
+          .replace(/\+/g, "-")
+          .replace(/\//g, "_")
+          .replace(/=/g, "");
+      } catch {
+        return null;
       }
-      function norm(s){
-        s=s.trim();
-        if(!s)return null;
-        if(/^https?:\/\//i.test(s)){
-          try{new URL(s);return s}catch(e){}
+    }
+
+    function norm(s) {
+      s = s.trim();
+      if (!s) return null;
+
+      if (s.startsWith("http://") || s.startsWith("https://")) {
+        try {
+          new URL(s);
+          return s;
+        } catch {
           return null;
         }
-        if(/\.|^localhost(:\d+)?$/.test(s)){
-          try{new URL("https://"+s);return"https://"+s}catch(e){}
-        }
-        return"https://duckduckgo.com/?q="+encodeURIComponent(s);
       }
-      document.getElementById("f").onsubmit=function(e){
-        e.preventDefault();
-        var v=document.getElementById("u").value;
-        var n=norm(v);if(!n)return;
-        var c=enc(n);if(!c)return;
-        location.href="/atlas/"+c;
-      };
-    }();
+
+      if (s.includes(".") || s.startsWith("localhost")) {
+        try {
+          return "https://" + s;
+        } catch {
+          return null;
+        }
+      }
+
+      return "https://duckduckgo.com/?q=" + encodeURIComponent(s);
+    }
+
+    document.getElementById("f").onsubmit = function (e) {
+      e.preventDefault();
+
+      const val = document.getElementById("u").value;
+      const url = norm(val);
+      if (!url) return;
+
+      const encoded = enc(url);
+      if (!encoded) return;
+
+      location.href = "/atlas/" + encoded;
+    };
   </script>
 </body>
 </html>
