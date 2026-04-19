@@ -113,6 +113,19 @@
       box-shadow: 0 0 12px rgba(108,108,255,0.5);
     }
 
+    .quick {
+      margin-top: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .quick button {
+      flex: 1 1 calc(50% - 0.25rem);
+      font-size: 0.75rem;
+      padding: 0.5rem;
+    }
+
     .links {
       margin-top: 1.2rem;
       display: flex;
@@ -141,6 +154,13 @@
       <input id="u" type="text" placeholder="search or enter a url..." autocomplete="off">
       <button>go</button>
     </form>
+
+    <div class="quick">
+      <button onclick="go('https://youtube.com')">youtube</button>
+      <button onclick="go('https://discord.com')">discord</button>
+      <button onclick="go('https://github.com')">github</button>
+      <button onclick="go('https://reddit.com')">reddit</button>
+    </div>
 
     <div class="links">
       <a href="https://kingston.gay" target="_blank">kingston.gay</a>
@@ -183,6 +203,12 @@
       }
 
       return "https://duckduckgo.com/?q=" + encodeURIComponent(s);
+    }
+
+    function go(u) {
+      const encoded = enc(u);
+      if (!encoded) return;
+      location.href = "/atlas/" + encoded;
     }
 
     document.getElementById("f").onsubmit = function (e) {
